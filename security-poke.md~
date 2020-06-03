@@ -1,0 +1,5 @@
+* Install humtum-platform
+To start:
+** clone the humtum source code
+** make sure you have rvm and yarn installed.
+** After that install the  

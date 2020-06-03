@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>security-poke</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="use-the-humtum-platform-to-build-security-poke">Use the Humtum Platform to build Security Poke</h1>
+<h2 id="start-humtum-platform-locally">Start humtum-platform locally</h2>
+<p>To start:</p>
+<ul>
+<li>Clone the humtum source code</li>
+<li>Make sure you have rvm and yarn (Node.js) installed.</li>
+<li>Run rvm to install the ruby environment</li>
+</ul>
+<pre><code>rvm install 2.4.2</code></pre>
+<ul>
+<li>After the rvm is installed, reenter the root project directory and run</li>
+</ul>
+<pre><code>bundle install</code></pre>
+<ul>
+<li>Then goto the <code>./client</code> folder, then run</li>
+</ul>
+<pre><code>yarn install</code></pre>
+<ul>
+<li>Go back to the root project directory, create <code>.env</code> file with the following content</li>
+</ul>
+<pre><code>export AUTH0_RUBY_CLIENT_ID=&lt;Management API client ID&gt;
+export AUTH0_RUBY_CLIENT_SECRET=&lt;Management API client Secret&gt;&gt;</code></pre>
+<ul>
+<li>Run</li>
+</ul>
+<pre><code>source .env</code></pre>
+<ul>
+<li>Run this to start the server</li>
+</ul>
+<pre><code>Rake db:migrate
+Rake start</code></pre>
+<p>Now your humtum server should be running on localhost:3000</p>
+<h2 id="use-humtum-to-create-security-poke-backend">Use humtum to create Security Poke backend</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NEyrtwj481Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>After creating the app, remember your app name and app id.</p>
+<p><img width="560" src="./appid.png"/></p>
+<h2 id="create-the-security-poke-electron-app">Create the Security Poke electron app</h2>
+<ul>
+<li>Read the <a href="https://auth0.com/blog/securing-electron-applications-with-openid-connect-and-oauth-2/#Electron-Overview">overview</a> about Electron.</li>
+</ul>
+<h3 id="register-security-poke-client-application">Register Security Poke client application</h3>
+<ul>
+<li>First, you need to register a client ID using humtum-platform OIDC dynamic client registration endpoint, for example</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">curl</span> --location --request POST <span class="st">&#39;localhost:3000/clients&#39;</span> \</span>
+<span id="cb7-2"><a href="#cb7-2"></a>--header <span class="st">&#39;Content-Type: application/json&#39;</span> \</span>
+<span id="cb7-3"><a href="#cb7-3"></a>--data-raw <span class="st">&#39;{</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">    &quot;client_name&quot;: &quot;Security poke&quot;,</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">    &quot;redirect_uris&quot;: [&quot;https://com.example.security-poke&quot;]</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="st">}&#39;</span></span></code></pre></div>
+<ul>
+<li>The result will be like. Save your credential in a safe place.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="dt">&quot;tenant&quot;</span><span class="fu">:</span> <span class="st">&quot;humtum&quot;</span><span class="fu">,</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="dt">&quot;global&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="dt">&quot;is_token_endpoint_ip_header_trusted&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="dt">&quot;is_first_party&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="dt">&quot;oidc_conformant&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="dt">&quot;callbacks&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;https://com.example.security-poke&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="dt">&quot;refresh_token&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>        <span class="dt">&quot;token_lifetime&quot;</span><span class="fu">:</span> <span class="dv">2592000</span><span class="fu">,</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>        <span class="dt">&quot;leeway&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>        <span class="dt">&quot;rotation_type&quot;</span><span class="fu">:</span> <span class="st">&quot;rotating&quot;</span><span class="fu">,</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>        <span class="dt">&quot;expiration_type&quot;</span><span class="fu">:</span> <span class="st">&quot;expiring&quot;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="fu">},</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Security poke&quot;</span><span class="fu">,</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="dt">&quot;sso_disabled&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="dt">&quot;cross_origin_auth&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="dt">&quot;encrypted&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="dt">&quot;signing_keys&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;keys&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="dt">&quot;client_id&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;Client ID&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="dt">&quot;callback_url_template&quot;</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>    <span class="dt">&quot;client_secret&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;Client Secret&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>    <span class="dt">&quot;jwt_configuration&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a>        <span class="dt">&quot;lifetime_in_seconds&quot;</span><span class="fu">:</span> <span class="dv">36000</span><span class="fu">,</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a>        <span class="dt">&quot;secret_encoded&quot;</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a>    <span class="fu">},</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a>    <span class="dt">&quot;grant_types&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;authorization_code&quot;</span><span class="ot">,</span> <span class="st">&quot;implicit&quot;</span><span class="ot">,</span> <span class="st">&quot;refresh_token&quot;</span><span class="ot">,</span> <span class="st">&quot;client_credentials&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb8-27"><a href="#cb8-27"></a>    <span class="dt">&quot;custom_login_page_on&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="implementing-the-electron-client">Implementing the Electron Client</h3>
+<p>Note: Our security poke example is a modification of <a href="https://auth0.com/blog/securing-electron-applications-with-openid-connect-and-oauth-2/#Creating-the-Electron-Application">this blog</a>. Read the blog before continue with this tutorial.</p>
+<ul>
+<li>Clone <a href="https://github.com/humtum-platform/HumtumNodeExample">this repo</a></li>
+<li>Go to <code>security-poke</code> folder. Run <code>npm i</code> to install all the dependencies.</li>
+<li>Create <code>env-variables.json</code> file for your application with the following</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">{</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="dt">&quot;apiIdentifier&quot;</span><span class="fu">:</span> <span class="st">&quot;com.humtum.api.&lt;YOUR-APP-NAME&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="dt">&quot;auth0Domain&quot;</span><span class="fu">:</span> <span class="st">&quot;humtum.auth0.com&quot;</span><span class="fu">,</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="dt">&quot;clientId&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;YOUR-CLIENT-ID&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="dt">&quot;appId&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;YOUR-APP-ID&gt;&quot;</span><span class="fu">,</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="dt">&quot;redirectUri&quot;</span><span class="fu">:</span> <span class="st">&quot;&lt;one-of-YOUR-redirect-uris&gt;&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="fu">}</span></span></code></pre></div>
+<p>Note: Our app uses <code>keytar</code> to remember sensitive informations like the <em>refresh token</em> similar to the blog examples.</p>
+<h4 id="authenticating-users-in-electron-applications">Authenticating Users in Electron Applications</h4>
+<p>Our example uses the <a href="https://auth0.com/docs/api-auth/tutorials/authorization-code-grant-pkce">authorization code flow with pkce</a> and refresh token rotation enabled. In fact, all the clients that register through Humtum Platform has Refresh Token rotation enabled.</p>
+<p>For this authorization flow, we need to implement in <code>./services/auth-service.js</code> the following functions:</p>
+<ul>
+<li><code>getPKCEURLandSecret</code> : returns the complete URL of the Authorization Server that users have to visit to authenticate and the PKCE secret for the PKCE flow.</li>
+<li><code>extractCode</code>: extract the code and the secret from callback URL returned by the Authorization Server</li>
+<li><code>exchangeCodeForToken</code>: exchange the code from the Authorization Server for the access token and the refresh token. The refresh token needs to be stored securely on the device using keytar</li>
+<li><code>refreshTokens</code>: use the refresh tokens to get the new access token</li>
+</ul>
+<p>Code in <code>./main/auth-process.js</code> show how to authenticate using these functions</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">const</span> {BrowserWindow} <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;electron&#39;</span>)<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">const</span> authService <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../services/auth-service&#39;</span>)<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">const</span> {createAppWindow} <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../main/app-process&#39;</span>)<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="kw">const</span> humtum <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../services/humtum&#39;</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="kw">const</span> envVariables <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../env-variables&#39;</span>)<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="kw">let</span> win <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="kw">function</span> <span class="fu">createAuthWindow</span>() {</span>
+<span id="cb10-12"><a href="#cb10-12"></a>  destroyAuthWin()<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a></span>
+<span id="cb10-14"><a href="#cb10-14"></a>  <span class="co">// Create the browser window.</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>  win <span class="op">=</span> <span class="kw">new</span> BrowserWindow({</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>  })<span class="op">;</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a>}</span>
+<span id="cb10-20"><a href="#cb10-20"></a></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="kw">function</span> <span class="fu">authenticateUsingAuthWindow</span>() {</span>
+<span id="cb10-22"><a href="#cb10-22"></a>  <span class="kw">const</span> { apiIdentifier<span class="op">,</span> redirectUri } <span class="op">=</span> envVariables</span>
+<span id="cb10-23"><a href="#cb10-23"></a>  <span class="kw">const</span> {</span>
+<span id="cb10-24"><a href="#cb10-24"></a>    url<span class="op">,</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a>    secret</span>
+<span id="cb10-26"><a href="#cb10-26"></a>  } <span class="op">=</span> authService<span class="op">.</span><span class="fu">getPKCEURLandSecret</span>({</span>
+<span id="cb10-27"><a href="#cb10-27"></a>    <span class="dt">audience</span><span class="op">:</span> apiIdentifier<span class="op">,</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>    <span class="dt">scope</span><span class="op">:</span> <span class="st">&quot;openid email profile offline_access read:appdata write:appdata&quot;</span><span class="op">,</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a>    <span class="dt">redirect_uri</span><span class="op">:</span> redirectUri</span>
+<span id="cb10-30"><a href="#cb10-30"></a>  })</span>
+<span id="cb10-31"><a href="#cb10-31"></a></span>
+<span id="cb10-32"><a href="#cb10-32"></a>  win<span class="op">.</span><span class="fu">loadURL</span>(url)<span class="op">;</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a></span>
+<span id="cb10-34"><a href="#cb10-34"></a>  <span class="kw">const</span> {<span class="dt">session</span><span class="op">:</span> {webRequest}} <span class="op">=</span> win<span class="op">.</span><span class="at">webContents</span><span class="op">;</span></span>
+<span id="cb10-35"><a href="#cb10-35"></a></span>
+<span id="cb10-36"><a href="#cb10-36"></a>  <span class="kw">const</span> filter <span class="op">=</span> {</span>
+<span id="cb10-37"><a href="#cb10-37"></a>    <span class="dt">urls</span><span class="op">:</span> [</span>
+<span id="cb10-38"><a href="#cb10-38"></a>      <span class="vs">`</span><span class="sc">${</span>redirectUri<span class="sc">}</span><span class="vs">/*`</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a>    ]</span>
+<span id="cb10-40"><a href="#cb10-40"></a>  }<span class="op">;</span></span>
+<span id="cb10-41"><a href="#cb10-41"></a></span>
+<span id="cb10-42"><a href="#cb10-42"></a>  webRequest<span class="op">.</span><span class="fu">onBeforeRequest</span>(filter<span class="op">,</span> <span class="kw">async</span> ({url}) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-43"><a href="#cb10-43"></a>    <span class="cf">try</span> {</span>
+<span id="cb10-44"><a href="#cb10-44"></a>      <span class="kw">const</span> {code <span class="op">,</span> state} <span class="op">=</span> authService<span class="op">.</span><span class="fu">extractCode</span>(url)</span>
+<span id="cb10-45"><a href="#cb10-45"></a>      <span class="cf">await</span> authService<span class="op">.</span><span class="fu">exchangeCodeForToken</span>(code<span class="op">,</span> secret<span class="op">,</span> state)</span>
+<span id="cb10-46"><a href="#cb10-46"></a>      <span class="co">// await authService.loadTokens(url);</span></span>
+<span id="cb10-47"><a href="#cb10-47"></a></span>
+<span id="cb10-48"><a href="#cb10-48"></a>      <span class="cf">await</span> humtum<span class="op">.</span><span class="fu">enrollInApp</span>(envVariables<span class="op">.</span><span class="at">appId</span><span class="op">,</span> (e) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-49"><a href="#cb10-49"></a>        createAppWindow()<span class="op">;</span></span>
+<span id="cb10-50"><a href="#cb10-50"></a>        destroyAuthWin()<span class="op">;</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a>      })<span class="op">.</span><span class="fu">then</span>(data <span class="kw">=&gt;</span> {</span>
+<span id="cb10-52"><a href="#cb10-52"></a></span>
+<span id="cb10-53"><a href="#cb10-53"></a>        <span class="cf">if</span> (data <span class="op">==</span> <span class="kw">null</span>) <span class="cf">return</span></span>
+<span id="cb10-54"><a href="#cb10-54"></a>        authenticateUsingAuthWindow()<span class="op">;</span></span>
+<span id="cb10-55"><a href="#cb10-55"></a></span>
+<span id="cb10-56"><a href="#cb10-56"></a>      })</span>
+<span id="cb10-57"><a href="#cb10-57"></a>    } <span class="cf">catch</span>(error){</span>
+<span id="cb10-58"><a href="#cb10-58"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(error)<span class="op">;</span></span>
+<span id="cb10-59"><a href="#cb10-59"></a></span>
+<span id="cb10-60"><a href="#cb10-60"></a>    }<span class="op">;</span></span>
+<span id="cb10-61"><a href="#cb10-61"></a></span>
+<span id="cb10-62"><a href="#cb10-62"></a>  })<span class="op">;</span></span>
+<span id="cb10-63"><a href="#cb10-63"></a></span>
+<span id="cb10-64"><a href="#cb10-64"></a>  win<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;authenticated&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb10-65"><a href="#cb10-65"></a></span>
+<span id="cb10-66"><a href="#cb10-66"></a>    destroyAuthWin()<span class="op">;</span></span>
+<span id="cb10-67"><a href="#cb10-67"></a>  })<span class="op">;</span></span>
+<span id="cb10-68"><a href="#cb10-68"></a></span>
+<span id="cb10-69"><a href="#cb10-69"></a>  win<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;closed&#39;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb10-70"><a href="#cb10-70"></a>    win <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb10-71"><a href="#cb10-71"></a>  })<span class="op">;</span></span>
+<span id="cb10-72"><a href="#cb10-72"></a>}</span>
+<span id="cb10-73"><a href="#cb10-73"></a></span>
+<span id="cb10-74"><a href="#cb10-74"></a><span class="kw">function</span> <span class="fu">destroyAuthWin</span>() {</span>
+<span id="cb10-75"><a href="#cb10-75"></a>  <span class="cf">if</span> (<span class="op">!</span>win) <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb10-76"><a href="#cb10-76"></a>  win<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span></span>
+<span id="cb10-77"><a href="#cb10-77"></a>  win <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb10-78"><a href="#cb10-78"></a>}</span>
+<span id="cb10-79"><a href="#cb10-79"></a></span>
+<span id="cb10-80"><a href="#cb10-80"></a><span class="kw">function</span> <span class="fu">createLogoutWindow</span>() {</span>
+<span id="cb10-81"><a href="#cb10-81"></a>  <span class="cf">return</span> <span class="kw">new</span> <span class="bu">Promise</span>(resolve <span class="kw">=&gt;</span> {</span>
+<span id="cb10-82"><a href="#cb10-82"></a>    <span class="kw">const</span> logoutWindow <span class="op">=</span> <span class="kw">new</span> BrowserWindow({</span>
+<span id="cb10-83"><a href="#cb10-83"></a>      <span class="dt">show</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb10-84"><a href="#cb10-84"></a>    })<span class="op">;</span></span>
+<span id="cb10-85"><a href="#cb10-85"></a></span>
+<span id="cb10-86"><a href="#cb10-86"></a>    logoutWindow<span class="op">.</span><span class="fu">loadURL</span>(authService<span class="op">.</span><span class="fu">getLogOutUrl</span>())<span class="op">;</span></span>
+<span id="cb10-87"><a href="#cb10-87"></a></span>
+<span id="cb10-88"><a href="#cb10-88"></a>    logoutWindow<span class="op">.</span><span class="fu">on</span>(<span class="st">&#39;ready-to-show&#39;</span><span class="op">,</span> <span class="kw">async</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb10-89"><a href="#cb10-89"></a>      logoutWindow<span class="op">.</span><span class="fu">close</span>()<span class="op">;</span></span>
+<span id="cb10-90"><a href="#cb10-90"></a>      <span class="cf">await</span> authService<span class="op">.</span><span class="fu">logout</span>()<span class="op">;</span></span>
+<span id="cb10-91"><a href="#cb10-91"></a>      resolve()<span class="op">;</span></span>
+<span id="cb10-92"><a href="#cb10-92"></a>    })<span class="op">;</span></span>
+<span id="cb10-93"><a href="#cb10-93"></a>  })<span class="op">;</span></span>
+<span id="cb10-94"><a href="#cb10-94"></a>}</span>
+<span id="cb10-95"><a href="#cb10-95"></a></span>
+<span id="cb10-96"><a href="#cb10-96"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> {</span>
+<span id="cb10-97"><a href="#cb10-97"></a>  createAuthWindow<span class="op">,</span></span>
+<span id="cb10-98"><a href="#cb10-98"></a>  createLogoutWindow<span class="op">,</span></span>
+<span id="cb10-99"><a href="#cb10-99"></a>  authenticateUsingAuthWindow</span>
+<span id="cb10-100"><a href="#cb10-100"></a>}<span class="op">;</span></span></code></pre></div>
+<p>First, use function <code>getPKCEURLandSecret</code> to get the authentication url and secret. The options passed to the function needs to contain the following fields.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1"></a>{</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="dt">audience</span><span class="op">:</span> apiIdentifier<span class="op">,</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="dt">scope</span><span class="op">:</span> <span class="st">&quot;openid email profile offline_access read:appdata write:appdata&quot;</span><span class="op">,</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="dt">redirect_uri</span><span class="op">:</span> redirectUri</span>
+<span id="cb11-5"><a href="#cb11-5"></a>}</span></code></pre></div>
+<p>Then, load the URL using the Electron window. We need to set up a filter so that the browser window can call a callback function when the Authorization Server call the callback url with the code and secret when the user authenticates successfully. This callback function should <code>extractCode</code> from the callback url and the <code>exchangeCodeForToken</code> so that our authentication service can get the access token. Once this is successful, you can use the humtum.js function to call the Humtum-platform API. In this example, we check whether the user has enrolled into our app. If she has, the app window can be launch. Otherwise, enroll the user and then reauthenticate to get the user’s permission to access her app’s data.</p>
+<p>Once the user is authenticated and enrolled, we can start building Security Poke!</p>
+<h3 id="implementing-security-poke.">Implementing Security Poke.</h3>
+<p>Security Poke is an application that allows friends to poke each other about a security issue. Therefore, the MVP for our app would have the following functions:</p>
+<ul>
+<li>Friends list</li>
+<li>Add new friend</li>
+<li>Notifications for friends’ request and poke</li>
+<li>Approve and reject friend’s request</li>
+<li>Send a poke to other friends</li>
+<li>Show user’s profile</li>
+</ul>
+<p>All these functions are implemented in the <code>./renderers</code> folder. To be more specifically,</p>
+<ul>
+<li>use <code>humtum.getFriends</code>{:.javascript} to get the friend list</li>
+<li>use <code>humtum.addFriend</code> to get send friend request</li>
+<li>use <code>humtum.approveFriendRequest</code> and <code>humtum.rejectFriendRequest</code> to approve and reject friend request</li>
+<li>use <code>humtum.createMessage</code> to send a poke using a predetermined format. For our apps, it is simple a string “poke”</li>
+<li>use <code>humtum.receiveMessage</code> to notify that the user has received the poke</li>
+<li>use <code>humtum.getMessage</code> to get unseen poke</li>
+<li>use <code>humtum.subscribeToChannel("MessagesChannel", ..., ... ,...)</code> to get the poke in real time using WebSocket</li>
+<li>use <code>humtum.getSelf</code> to get the user profile</li>
+</ul>
+</body>
+</html>
