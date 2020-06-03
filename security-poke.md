@@ -5,29 +5,29 @@ To start:
 * Clone the humtum source code
 * Make sure you have rvm and yarn (Node.js) installed.
 * Run rvm to install the ruby environment
-```
+```bash
 rvm install 2.4.2
 ```
 * After the rvm is installed, reenter the root project directory and run
-```
+```bash
 bundle install
 ```
 * Then goto the `./client` folder, then run
-```
+```bash
 yarn install
 ```
 * Go back to the root project directory, create `.env` file with the following content
-```
+```bash
 export AUTH0_RUBY_CLIENT_ID=<Management API client ID>
 export AUTH0_RUBY_CLIENT_SECRET=<Management API client Secret>>
 ```
 
 * Run
-```
+```bash
 source .env
 ```
 * Run this to start the server
-```
+```bash
 Rake db:migrate
 Rake start
 ```

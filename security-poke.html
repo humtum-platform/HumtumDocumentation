@@ -89,29 +89,29 @@
 <li>Make sure you have rvm and yarn (Node.js) installed.</li>
 <li>Run rvm to install the ruby environment</li>
 </ul>
-<pre><code>rvm install 2.4.2</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">rvm</span> install 2.4.2</span></code></pre></div>
 <ul>
 <li>After the rvm is installed, reenter the root project directory and run</li>
 </ul>
-<pre><code>bundle install</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">bundle</span> install</span></code></pre></div>
 <ul>
 <li>Then goto the <code>./client</code> folder, then run</li>
 </ul>
-<pre><code>yarn install</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">yarn</span> install</span></code></pre></div>
 <ul>
 <li>Go back to the root project directory, create <code>.env</code> file with the following content</li>
 </ul>
-<pre><code>export AUTH0_RUBY_CLIENT_ID=&lt;Management API client ID&gt;
-export AUTH0_RUBY_CLIENT_SECRET=&lt;Management API client Secret&gt;&gt;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">export</span> <span class="va">AUTH0_RUBY_CLIENT_ID=</span><span class="op">&lt;</span><span class="ex">Management</span> API client ID<span class="op">&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">export</span> <span class="va">AUTH0_RUBY_CLIENT_SECRET=</span><span class="op">&lt;</span><span class="ex">Management</span> API client Secret<span class="op">&gt;&gt;</span></span></code></pre></div>
 <ul>
 <li>Run</li>
 </ul>
-<pre><code>source .env</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="bu">source</span> .env</span></code></pre></div>
 <ul>
 <li>Run this to start the server</li>
 </ul>
-<pre><code>Rake db:migrate
-Rake start</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Rake</span> db:migrate</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">Rake</span> start</span></code></pre></div>
 <p>Now your humtum server should be running on localhost:3000</p>
 <h2 id="use-humtum-to-create-security-poke-backend">Use humtum to create Security Poke backend</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/NEyrtwj481Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -308,7 +308,7 @@ Rake start</code></pre>
 </ul>
 <p>All these functions are implemented in the <code>./renderers</code> folder. To be more specifically,</p>
 <ul>
-<li>use <code>humtum.getFriends</code>{:.javascript} to get the friend list</li>
+<li>use <code>humtum.getFriends</code> to get the friend list</li>
 <li>use <code>humtum.addFriend</code> to get send friend request</li>
 <li>use <code>humtum.approveFriendRequest</code> and <code>humtum.rejectFriendRequest</code> to approve and reject friend request</li>
 <li>use <code>humtum.createMessage</code> to send a poke using a predetermined format. For our apps, it is simple a string “poke”</li>
