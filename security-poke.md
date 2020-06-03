@@ -18,6 +18,7 @@ yarn install
 ```
 * Go back to the root project directory, create `.env` file with the following content
 ```bash
+
 export AUTH0_RUBY_CLIENT_ID=<Management API client ID>
 export AUTH0_RUBY_CLIENT_SECRET=<Management API client Secret>>
 ```
@@ -28,6 +29,7 @@ source .env
 ```
 * Run this to start the server
 ```bash
+
 Rake db:migrate
 Rake start
 ```
