@@ -101,8 +101,9 @@
 <ul>
 <li>Go back to the root project directory, create <code>.env</code> file with the following content</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">export</span> <span class="va">AUTH0_RUBY_CLIENT_ID=</span><span class="op">&lt;</span><span class="ex">Management</span> API client ID<span class="op">&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">export</span> <span class="va">AUTH0_RUBY_CLIENT_SECRET=</span><span class="op">&lt;</span><span class="ex">Management</span> API client Secret<span class="op">&gt;&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">export</span> <span class="va">AUTH0_RUBY_CLIENT_ID=</span><span class="op">&lt;</span><span class="ex">Management</span> API client ID<span class="op">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="bu">export</span> <span class="va">AUTH0_RUBY_CLIENT_SECRET=</span><span class="op">&lt;</span><span class="ex">Management</span> API client Secret<span class="op">&gt;&gt;</span></span></code></pre></div>
 <ul>
 <li>Run</li>
 </ul>
@@ -110,8 +111,9 @@
 <ul>
 <li>Run this to start the server</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">Rake</span> db:migrate</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">Rake</span> start</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">Rake</span> db:migrate</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="ex">Rake</span> start</span></code></pre></div>
 <p>Now your humtum server should be running on localhost:3000</p>
 <h2 id="use-humtum-to-create-security-poke-backend">Use humtum to create Security Poke backend</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/NEyrtwj481Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -121,6 +123,7 @@
 <h2 id="create-the-security-poke-electron-app">Create the Security Poke electron app</h2>
 <ul>
 <li>Read the <a href="https://auth0.com/blog/securing-electron-applications-with-openid-connect-and-oauth-2/#Electron-Overview">overview</a> about Electron.</li>
+<li>The source code for this example is [https://github.com/humtum-platform/HumtumNodeExample/tree/master/security-poke]</li>
 </ul>
 <h3 id="register-security-poke-client-application">Register Security Poke client application</h3>
 <ul>
@@ -317,5 +320,7 @@
 <li>use <code>humtum.subscribeToChannel("MessagesChannel", ..., ... ,...)</code> to get the poke in real time using WebSocket</li>
 <li>use <code>humtum.getSelf</code> to get the user profile</li>
 </ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>This tutorial shows how to build Security Poke using Humtum. The full source code for our application is in https://github.com/humtum-platform/HumtumNodeExample/tree/master/security-poke</p>
 </body>
 </html>

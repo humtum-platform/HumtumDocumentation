@@ -46,6 +46,7 @@ After creating the app, remember your app name and app id.
 
 ## Create the Security Poke electron app
 * Read the [overview](https://auth0.com/blog/securing-electron-applications-with-openid-connect-and-oauth-2/#Electron-Overview) about Electron.
+* The source code for this example is [https://github.com/humtum-platform/HumtumNodeExample/tree/master/security-poke]
 
 ### Register Security Poke client application
 * First, you need to register a client ID using humtum-platform OIDC dynamic client registration endpoint, for example
@@ -257,3 +258,6 @@ All these functions are implemented in the `./renderers` folder. To be more spec
 * use `humtum.getMessage` to get unseen poke
 * use `humtum.subscribeToChannel("MessagesChannel", ..., ... ,...)` to get the poke in real time using WebSocket
 * use `humtum.getSelf` to get the user profile
+
+## Conclusion
+This tutorial shows how to build Security Poke using Humtum. The full source code for our application is in https://github.com/humtum-platform/HumtumNodeExample/tree/master/security-poke
