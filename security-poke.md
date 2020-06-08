@@ -121,7 +121,7 @@ For this authorization flow, we need to implement in `./services/auth-service.js
 Code in `./main/auth-process.js` show how to authenticate using these functions
 
 ```javascript
-
+// ./main/auth-process.js 
 const {BrowserWindow} = require('electron');
 const authService = require('../services/auth-service');
 const {createAppWindow} = require('../main/app-process');
@@ -252,6 +252,7 @@ All these functions are implemented in the `./renderers` folder. To be more spec
 
 * use `humtum.getFriends` to get the friend list
 * use `humtum.addFriend` to get send friend request
+* use `humtum.getFriendRequests` to get friend requests
 * use `humtum.approveFriendRequest` and `humtum.rejectFriendRequest` to approve and reject friend request
 * use `humtum.createMessage` to send a poke using a predetermined format. For our apps, it is simple a string "poke"
 * use `humtum.receiveMessage` to notify that the user has received the poke

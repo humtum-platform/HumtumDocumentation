@@ -191,7 +191,7 @@
 <li><code>refreshTokens</code>: use the refresh tokens to get the new access token</li>
 </ul>
 <p>Code in <code>./main/auth-process.js</code> show how to authenticate using these functions</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1"></a></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">// ./main/auth-process.js </span></span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="kw">const</span> {BrowserWindow} <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;electron&#39;</span>)<span class="op">;</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="kw">const</span> authService <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../services/auth-service&#39;</span>)<span class="op">;</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="kw">const</span> {createAppWindow} <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;../main/app-process&#39;</span>)<span class="op">;</span></span>
@@ -313,6 +313,7 @@
 <ul>
 <li>use <code>humtum.getFriends</code> to get the friend list</li>
 <li>use <code>humtum.addFriend</code> to get send friend request</li>
+<li>use <code>humtum.getFriendRequests</code> to get friend requests</li>
 <li>use <code>humtum.approveFriendRequest</code> and <code>humtum.rejectFriendRequest</code> to approve and reject friend request</li>
 <li>use <code>humtum.createMessage</code> to send a poke using a predetermined format. For our apps, it is simple a string “poke”</li>
 <li>use <code>humtum.receiveMessage</code> to notify that the user has received the poke</li>
