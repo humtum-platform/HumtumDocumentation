@@ -116,6 +116,8 @@
 <span id="cb6-3"><a href="#cb6-3"></a><span class="ex">Rake</span> start</span></code></pre></div>
 <p>Now your humtum server should be running on localhost:3000</p>
 <h2 id="use-humtum-to-create-sentinel-backend">Use humtum to create Sentinel backend</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fgprqPhzPEE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>After creating the app, remember your app name and app id.</p>
 <p><img width="560" src="./appid.png"/></p>
 <h2 id="create-the-sentinel-chrome-extension">Create the Sentinel Chrome extension</h2>
@@ -400,7 +402,7 @@
 <span id="cb15-4"><a href="#cb15-4"></a>}</span></code></pre></div>
 <p>The website and the message will be added to a lru storage. And then, using the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/onUpdated">onUpdated</a> callback, for each time user visits a website, we can check the url against the stored message. If the url passes the check, the message will be displayed to the users.</p>
 <h5 id="browser-action">Browser action</h5>
-<p>the <code>browser action</code> will display the profile if the user is logged in. Otherwise it would display the login button. <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage">browser.runtime.sendMessage</a> is used to communicate with the browser backend.</p>
+<p>The <code>browser action</code> will display the profile if the user is logged in; otherwise, it will display a login button. <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage">browser.runtime.sendMessage</a> is used to communicate with the browser backend.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1"></a></span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="co">// ./src/browser_action/browser_action.js</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a></span>
@@ -497,5 +499,7 @@
 <span id="cb17-25"><a href="#cb17-25"></a>    })</span>
 <span id="cb17-26"><a href="#cb17-26"></a>  }</span>
 <span id="cb17-27"><a href="#cb17-27"></a>})</span></code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this tutorial, we create Sentinel using humtum-platform as a backend, a Electron app for users to manage their followers and following, and a Chrome Extension to display messages from user’s following.</p>
 </body>
 </html>

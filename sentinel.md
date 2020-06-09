@@ -37,6 +37,7 @@ Now your humtum server should be running on localhost:3000
 
 ## Use humtum to create Sentinel backend
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fgprqPhzPEE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 After creating the app, remember your app name and app id.
@@ -365,7 +366,7 @@ The website and the message will be added to a lru storage. And then, using the 
 
 ##### Browser action
 
-the `browser action` will display the profile if the user is logged in. Otherwise it would display the login button. [browser.runtime.sendMessage](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage) is used to communicate with the browser backend.
+The `browser action` will display the profile if the user is logged in; otherwise, it will display a login button. [browser.runtime.sendMessage](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/sendMessage) is used to communicate with the browser backend.
 
 ```js
 
@@ -469,3 +470,7 @@ browser.runtime.onInstalled.addListener(function () {
 })
 
 ```
+
+## Conclusion
+
+In this tutorial, we create Sentinel using humtum-platform as a backend, a Electron app for users to manage their followers and following, and a Chrome Extension to display messages from user's following.
